@@ -529,11 +529,11 @@ Browser: 3 steps in a row on desktop with connecting line, stack vertically on m
   <div class="sec-title fi">Numbers that speak</div>
   <p class="sec-sub fi">Proven delivery across wind, hybrid, and long-term O&amp;M contracts across India.</p>
   <div class="stats-row fi">
-    <div class="stat-box"><div class="n" data-target="300">0<em>+ MW</em></div><div class="l">Capacity commissioned</div></div>
+    <div class="stat-box"><div class="n" data-target="100">0<em>+ MW</em></div><div class="l">Capacity commissioned</div></div>
     <div class="stat-box"><div class="n" data-target="25">0<em>+</em></div><div class="l">Projects delivered</div></div>
     <div class="stat-box"><div class="n" data-target="97">0<em>%</em></div><div class="l">Avg plant availability</div></div>
-    <div class="stat-box"><div class="n">₹500<em>Cr+</em></div><div class="l">Projects executed</div></div>
-    <div class="stat-box"><div class="n" data-target="12">0<em> states</em></div><div class="l">Pan-India footprint</div></div>
+    <div class="stat-box"><div class="n">₹100<em>Cr+</em></div><div class="l">Projects executed</div></div>
+    <div class="stat-box"><div class="n" data-target="04">0<em> states</em></div><div class="l">Pan-India footprint</div></div>
   </div>
   <!-- India map - simplified SVG representation -->
   <div class="india-map-wrap fi">

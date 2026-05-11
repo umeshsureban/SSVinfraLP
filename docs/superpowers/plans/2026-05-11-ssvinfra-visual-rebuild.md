@@ -736,7 +736,7 @@ Replace `<!-- remaining sections placeholder -->` with:
   <p class="sec-sub fi">Proven delivery across wind, hybrid, and long-term O&amp;M contracts across India.</p>
   <div class="stats-pure fi">
     <div class="stat-pure-item">
-      <div class="stat-pure-num" data-target="300">0<em>+ MW</em></div>
+      <div class="stat-pure-num" data-target="100">0<em>+ MW</em></div>
       <div class="stat-pure-label">Capacity commissioned</div>
     </div>
     <div class="stat-pure-item">
@@ -748,11 +748,11 @@ Replace `<!-- remaining sections placeholder -->` with:
       <div class="stat-pure-label">Avg plant availability</div>
     </div>
     <div class="stat-pure-item">
-      <div class="stat-pure-num">₹500<em>Cr+</em></div>
+      <div class="stat-pure-num">₹100<em>Cr+</em></div>
       <div class="stat-pure-label">Projects executed</div>
     </div>
     <div class="stat-pure-item">
-      <div class="stat-pure-num" data-target="12">0<em> states</em></div>
+      <div class="stat-pure-num" data-target="04">0<em> states</em></div>
       <div class="stat-pure-label">Pan-India footprint</div>
     </div>
   </div>
