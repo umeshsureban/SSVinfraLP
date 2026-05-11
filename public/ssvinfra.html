@@ -195,6 +195,9 @@ nav.scrolled{height:56px;background:rgba(11,26,9,.94);-webkit-backdrop-filter:bl
 .flip-step-desc{font-size:14px;color:rgba(255,255,255,.85);line-height:1.7}
 .flip-back-process{background:linear-gradient(135deg,#2e510f,#4a7c20)}
 .flip-back-svc{background:linear-gradient(135deg,#0b1609,#1a2e16)}
+.flip-back-inner-left{align-items:flex-start;text-align:left}
+.flip-back-svc .svc-ideal{color:var(--pale)}
+.flip-back-svc .svc-ideal span{color:rgba(255,255,255,.55);font-weight:400}
 .svc-dot{width:12px;height:12px;border-radius:50%;margin-bottom:18px}
 .dot-wind{background:#4CAF50}
 .dot-hybrid{background:#F9A825}
@@ -612,41 +615,65 @@ footer{background:#060E08;padding:56px 6% 28px}
   <h2 class="sec-h2 fi">Full-spectrum renewable EPC</h2>
   <p class="sec-sub fi">From site resource assessment to long-term O&amp;M — one partner, complete accountability.</p>
   <div class="services-grid">
-    <div class="svc-card fi">
-      <div class="svc-dot dot-wind"></div>
-      <div class="svc-name">Wind Energy EPC</div>
-      <p class="svc-desc">End-to-end wind farm development — micrositing, WTG foundations, crane hardstands, erection, SCADA integration, and grid commissioning.</p>
-      <div class="svc-ideal">Ideal for: <span>Government / PSU, IPPs, Industrial</span></div>
-      <div class="svc-specs">
-        <span class="spec">On-shore WTG</span>
-        <span class="spec">Up to 5+ MW turbines</span>
-        <span class="spec">ISTS grid tie</span>
+    <div class="flip-card fi">
+      <div class="flip-inner">
+        <div class="flip-front svc-card">
+          <div class="svc-dot dot-wind"></div>
+          <div class="svc-name">Wind Energy EPC</div>
+          <div class="svc-specs">
+            <span class="spec">On-shore WTG</span>
+            <span class="spec">Up to 5+ MW turbines</span>
+            <span class="spec">ISTS grid tie</span>
+          </div>
+        </div>
+        <div class="flip-back flip-back-svc">
+          <div class="flip-back-inner flip-back-inner-left">
+            <span class="flip-step-label">Wind EPC</span>
+            <p class="flip-step-desc">End-to-end wind farm development — micrositing, WTG foundations, crane hardstands, erection, SCADA integration, and grid commissioning.</p>
+            <div class="svc-ideal">Ideal for: <span>Government / PSU, IPPs, Industrial</span></div>
+          </div>
+        </div>
       </div>
-      <a href="#faq-wind" class="svc-more">Learn more →</a>
     </div>
-    <div class="svc-card fi">
-      <div class="svc-dot dot-hybrid"></div>
-      <div class="svc-name">Hybrid Solar + Wind</div>
-      <p class="svc-desc">Co-located solar PV and wind turbine plants sharing civil infrastructure — maximise PLF, reduce per-unit cost, smooth generation variability.</p>
-      <div class="svc-ideal">Ideal for: <span>Industrial, Real Estate, C&amp;I</span></div>
-      <div class="svc-specs">
-        <span class="spec">Optimised PLF</span>
-        <span class="spec">BESS ready</span>
-        <span class="spec">Shared infra savings</span>
+    <div class="flip-card fi">
+      <div class="flip-inner">
+        <div class="flip-front svc-card">
+          <div class="svc-dot dot-hybrid"></div>
+          <div class="svc-name">Hybrid Solar + Wind</div>
+          <div class="svc-specs">
+            <span class="spec">Optimised PLF</span>
+            <span class="spec">BESS ready</span>
+            <span class="spec">Shared infra savings</span>
+          </div>
+        </div>
+        <div class="flip-back flip-back-svc">
+          <div class="flip-back-inner flip-back-inner-left">
+            <span class="flip-step-label">Hybrid</span>
+            <p class="flip-step-desc">Co-located solar PV and wind turbine plants sharing civil infrastructure — maximise PLF, reduce per-unit cost, smooth generation variability.</p>
+            <div class="svc-ideal">Ideal for: <span>Industrial, Real Estate, C&amp;I</span></div>
+          </div>
+        </div>
       </div>
-      <a href="#faq-hybrid" class="svc-more">Learn more →</a>
     </div>
-    <div class="svc-card fi">
-      <div class="svc-dot dot-om"></div>
-      <div class="svc-name">O&amp;M Services</div>
-      <p class="svc-desc">Preventive and corrective maintenance, 24×7 remote monitoring, spare parts management, and SLA-backed availability guarantees.</p>
-      <div class="svc-ideal">Ideal for: <span>All sectors — existing wind &amp; hybrid plants</span></div>
-      <div class="svc-specs">
-        <span class="spec">AMC contracts</span>
-        <span class="spec">24×7 monitoring</span>
-        <span class="spec">Performance SLA</span>
+    <div class="flip-card fi">
+      <div class="flip-inner">
+        <div class="flip-front svc-card">
+          <div class="svc-dot dot-om"></div>
+          <div class="svc-name">O&amp;M Services</div>
+          <div class="svc-specs">
+            <span class="spec">AMC contracts</span>
+            <span class="spec">24×7 monitoring</span>
+            <span class="spec">Performance SLA</span>
+          </div>
+        </div>
+        <div class="flip-back flip-back-svc">
+          <div class="flip-back-inner flip-back-inner-left">
+            <span class="flip-step-label">O&amp;M</span>
+            <p class="flip-step-desc">Preventive and corrective maintenance, 24×7 remote monitoring, spare parts management, and SLA-backed availability guarantees.</p>
+            <div class="svc-ideal">Ideal for: <span>All sectors — existing wind &amp; hybrid plants</span></div>
+          </div>
+        </div>
       </div>
-      <a href="#faq-om" class="svc-more">Learn more →</a>
     </div>
   </div>
 </section>
