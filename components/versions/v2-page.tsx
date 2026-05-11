@@ -112,17 +112,28 @@ export default function V2Page() {
               { iconBg: "from-amber-400/85 to-orange-500/85",  Icon: Sun,    name: "Hybrid Solar + Wind",  desc: "Co-located solar PV and wind plants sharing civil infrastructure — maximise PLF, reduce per-unit cost, smooth variability. BESS integration ready.", tags: ["Optimised PLF","BESS ready","Shared infra"] },
               { iconBg: "from-blue-400/85 to-violet-500/85",   Icon: Wrench, name: "O&M Services",          desc: "In-house O&M division with 24×7 remote SCADA monitoring, preventive maintenance schedules, spare parts management, and SLA-backed performance.", tags: ["97% availability","24×7 SCADA","AMC contracts"] },
             ].map((svc, i) => (
-              <motion.div key={svc.name} {...fadeUp(i)} whileHover={{ y: -6, scale: 1.02 }} className="rounded-2xl p-8 bg-white/75 backdrop-blur-xl border border-slate-200/70 shadow-sm cursor-default hover:shadow-lg transition-shadow">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-gradient-to-br ${svc.iconBg} backdrop-blur-md border border-white/20`}>
-                  <svc.Icon size={22} className="text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-2">{svc.name}</h3>
-                <p className="text-[14px] text-slate-500 leading-relaxed mb-5">{svc.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {svc.tags.map(t => (
-                    <span key={t} className="text-[11px] px-3 py-1 rounded-full font-semibold bg-teal-50/90 border border-teal-200/40 text-teal-700">{t}</span>
-                  ))}
-                </div>
+              <motion.div key={svc.name} {...fadeUp(i)}>
+                <FlipCard
+                  front={
+                    <div className="rounded-2xl p-8 bg-white/75 backdrop-blur-xl border border-slate-200/70 shadow-sm cursor-default">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-gradient-to-br ${svc.iconBg} backdrop-blur-md border border-white/20`}>
+                        <svc.Icon size={22} className="text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-slate-800 mb-3">{svc.name}</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {svc.tags.map(t => (
+                          <span key={t} className="text-[11px] px-3 py-1 rounded-full font-semibold bg-teal-50/90 border border-teal-200/40 text-teal-700">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  }
+                  back={
+                    <div className="rounded-2xl p-8 bg-gradient-to-br from-slate-900 to-slate-800 flex flex-col justify-center gap-3 cursor-default">
+                      <span className="text-[10px] font-bold tracking-[2px] uppercase text-teal-400">{svc.name}</span>
+                      <p className="text-[14px] text-slate-300 leading-relaxed">{svc.desc}</p>
+                    </div>
+                  }
+                />
               </motion.div>
             ))}
           </div>
