@@ -133,25 +133,25 @@ nav.scrolled{height:56px;background:rgba(11,26,9,.94);-webkit-backdrop-filter:bl
 
 /* floating stats card */
 .hero-stats-card{
-  position:absolute;bottom:48px;left:6%;right:6%;
+  position:absolute;bottom:45px;left:6%;right:auto;width:44%;transform:none;
   background:rgba(255,255,255,.93);
   -webkit-backdrop-filter:blur(14px);
   backdrop-filter:blur(14px);
-  border-radius:20px;
-  padding:28px 36px;
+  border-radius:15px;
+  padding:13px 22px;
   display:flex;
   align-items:center;
   justify-content:space-around;
   gap:0;
-  box-shadow:0 8px 40px rgba(11,26,9,.18);
+  box-shadow:0 5px 25px rgba(11,26,9,.18);
   z-index:1;
 }
 .stat-item{text-align:center;flex:1}
 .stat-item+.stat-item{border-left:1px solid var(--border)}
-.stat-num{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--dark);letter-spacing:-1px;line-height:1}
-.stat-label{font-size:11px;color:var(--sage);margin-top:4px;letter-spacing:.3px}
+.stat-num{font-size:clamp(18px,2.25vw,25px);font-weight:800;color:var(--dark);letter-spacing:-0.5px;line-height:1}
+.stat-label{font-size:10px;color:var(--sage);margin-top:3px;letter-spacing:.3px}
 @media(max-width:600px){
-  .hero-stats-card{position:relative;bottom:auto;left:auto;right:auto;margin-top:36px;flex-wrap:wrap;gap:20px;padding:20px}
+  .hero-stats-card{position:relative;bottom:auto;left:auto;right:auto;margin-top:22px;flex-wrap:wrap;gap:12px;padding:13px}
   .stat-item+.stat-item{border-left:none}
   .stat-item{min-width:40%}
 }
@@ -465,6 +465,14 @@ footer{background:#060E08;padding:56px 6% 28px}
   .hero-actions{flex-direction:column}
   .btn-primary,.btn-wa-outline,.btn-outline{text-align:center;justify-content:center}
   .chat-panel{width:calc(100vw - 40px)}
+  /* Voice panel: bottom-sheet on mobile */
+  .ai-agent-panel{left:0;right:0;bottom:0;width:100%;border-radius:20px 20px 0 0;max-height:none}
+  .ai-agent-panel.fab-collapsed{left:auto;right:20px;bottom:24px;width:56px;max-height:56px;border-radius:50%}
+  /* Stack all three buttons vertically and centered */
+  .ai-agents-row{grid-template-columns:1fr;max-width:320px;margin:0 auto}
+  .agent-card{text-align:center}
+  .agent-voice-btn{max-width:280px;margin:0 auto}
+  .ai-text-chat-btn{max-width:320px;margin:0 auto 12px}
 }
 /* ── TASK-5 SECTION BACKGROUNDS ── */
 .sec-bg-light{background:var(--light)}
@@ -521,7 +529,7 @@ footer{background:#060E08;padding:56px 6% 28px}
       </a>
     </div>
   </div>
-  <!-- Floating KPI card -->
+  Floating KPI card
   <div class="hero-stats-card fi">
     <div class="stat-item">
       <div class="stat-num" data-target="300">0<span>+ MW</span></div>
@@ -1233,12 +1241,12 @@ window.addEventListener('scroll', function() {
   } else {
     if (aiPanelEl.classList.contains('fab-collapsed')) {
       aiPanelEl.classList.remove('fab-collapsed');
-      if (!_panelClosedByUser) aiPanelEl.classList.add('open');
+      if (!_panelClosedByUser && window.innerWidth > 768) aiPanelEl.classList.add('open');
     }
   }
 }, { passive: true });
 /* Auto-open panel in hero on load (slight delay for smooth entrance) */
-setTimeout(function() { aiPanelEl.classList.add('open'); }, 800);
+setTimeout(function() { if (window.innerWidth > 768) aiPanelEl.classList.add('open'); }, 800);
 function sendChip(btn) {
   const text = btn.textContent;
   addChatMsg(text, 'user');

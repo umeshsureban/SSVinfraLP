@@ -117,10 +117,10 @@ nav.scrolled{height:56px;background:rgba(11,26,9,.94);-webkit-backdrop-filter:bl
 .nav-mobile-cta{color:var(--pale)!important;font-weight:700!important}
 
 /* ── HERO ── */
-.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;padding:140px 6% 120px;overflow:hidden;
+.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;padding:140px 6% 80px;overflow:hidden;
   background:url('https://images.unsplash.com/photo-1548337138-e87d889cc369?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat}
 .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,26,9,.45) 0%,rgba(11,26,9,.82) 100%);z-index:0}
-.hero-inner{position:relative;z-index:1;max-width:700px}
+.hero-inner{position:relative;z-index:2;max-width:700px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(180,188,160,.35);background:rgba(11,26,9,.35);border-radius:var(--radius-pill);padding:6px 16px 6px 10px;margin-bottom:28px}
 .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--pale);animation:blink 1.8s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
@@ -133,25 +133,24 @@ nav.scrolled{height:56px;background:rgba(11,26,9,.94);-webkit-backdrop-filter:bl
 
 /* floating stats card */
 .hero-stats-card{
-  position:absolute;bottom:48px;left:6%;right:6%;
-  background:rgba(255,255,255,.93);
-  -webkit-backdrop-filter:blur(14px);
-  backdrop-filter:blur(14px);
-  border-radius:20px;
-  padding:28px 36px;
   display:flex;
   align-items:center;
   justify-content:space-around;
   gap:0;
-  box-shadow:0 8px 40px rgba(11,26,9,.18);
-  z-index:1;
+  margin:0 6%;
+  background:rgba(255,255,255,.93);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  border-radius:12px;
+  padding:14px 18px;
+  box-shadow:0 4px 20px rgba(11,26,9,.18);
 }
 .stat-item{text-align:center;flex:1}
 .stat-item+.stat-item{border-left:1px solid var(--border)}
-.stat-num{font-size:clamp(26px,3.5vw,38px);font-weight:800;color:var(--dark);letter-spacing:-1px;line-height:1}
-.stat-label{font-size:11px;color:var(--sage);margin-top:4px;letter-spacing:.3px}
+.stat-num{font-size:clamp(13px,1.75vw,19px);font-weight:800;color:var(--dark);letter-spacing:-0.5px;line-height:1}
+.stat-label{font-size:7px;color:var(--sage);margin-top:2px;letter-spacing:.3px}
 @media(max-width:600px){
-  .hero-stats-card{position:relative;bottom:auto;left:auto;right:auto;margin-top:36px;flex-wrap:wrap;gap:20px;padding:20px}
+  .hero-stats-card{margin:0 4%;flex-wrap:wrap;gap:10px;padding:10px}
   .stat-item+.stat-item{border-left:none}
   .stat-item{min-width:40%}
 }
@@ -355,14 +354,14 @@ footer{background:#060E08;padding:56px 6% 28px}
 .ai-agent-panel{position:fixed;right:20px;z-index:301;display:flex;flex-direction:column;overflow:hidden;
   background:rgba(11,26,9,.7);-webkit-backdrop-filter:blur(28px) saturate(160%);backdrop-filter:blur(28px) saturate(160%);
   border:1px solid rgba(104,139,87,.32);box-shadow:0 28px 72px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.1);
-  /* expanded dimensions */
-  bottom:96px;width:340px;max-height:440px;border-radius:22px;
+  /* expanded dimensions — anchored to top-right of hero */
+  top:80px;width:340px;max-height:440px;border-radius:22px;
   /* default hidden */
-  opacity:0;pointer-events:none;transform:translateY(8px) scale(0.97);
-  transition:bottom .52s cubic-bezier(.4,0,.2,1),width .52s cubic-bezier(.4,0,.2,1),max-height .52s cubic-bezier(.4,0,.2,1),border-radius .45s ease,opacity .3s ease,transform .3s ease,background .4s ease,box-shadow .4s ease}
+  opacity:0;pointer-events:none;transform:translateY(-8px) scale(0.97);
+  transition:top .52s cubic-bezier(.4,0,.2,1),right .52s cubic-bezier(.4,0,.2,1),width .52s cubic-bezier(.4,0,.2,1),max-height .52s cubic-bezier(.4,0,.2,1),border-radius .45s ease,opacity .3s ease,transform .3s ease,background .4s ease,box-shadow .4s ease}
 .ai-agent-panel.open{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
 .ai-agent-panel.fab-collapsed{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);
-  bottom:24px;width:56px;max-height:56px;border-radius:50%;cursor:pointer;
+  top:auto;bottom:24px;right:80px;width:56px;max-height:56px;border-radius:50%;cursor:pointer;
   background:rgba(79,70,229,.88);box-shadow:0 4px 20px rgba(79,70,229,.55),inset 0 1px 0 rgba(255,255,255,.18)}
 .ai-agent-panel.fab-collapsed .ai-panel-head,.ai-agent-panel.fab-collapsed .ai-agents-row,
 .ai-agent-panel.fab-collapsed .ai-text-chat-btn,.ai-agent-panel.fab-collapsed .ai-panel-brand{opacity:0;pointer-events:none;transition:opacity .15s ease}
@@ -387,7 +386,7 @@ footer{background:#060E08;padding:56px 6% 28px}
 .ai-panel-brand-dot{width:7px;height:7px;border-radius:50%;background:#e44;flex-shrink:0}
 
 /* ── CHAT PANEL ── */
-.chat-panel{position:fixed;bottom:96px;right:20px;z-index:299;display:none;width:320px;height:430px;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.18);flex-direction:column;overflow:hidden;border:1px solid var(--border)}
+.chat-panel{position:fixed;top:80px;right:20px;z-index:299;display:none;width:320px;height:430px;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.18);flex-direction:column;overflow:hidden;border:1px solid var(--border)}
 .chat-panel.open{display:flex}
 .chat-header{background:var(--forest);padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
 .chat-header-info{display:flex;align-items:center;gap:10px}
@@ -416,7 +415,7 @@ footer{background:#060E08;padding:56px 6% 28px}
 .chat-send:hover{background:var(--mid)}
 
 /* ── VOICE PANEL ── */
-.voice-panel{position:fixed;bottom:96px;right:20px;z-index:299;display:none;width:300px;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.18);overflow:hidden;border:1px solid var(--border)}
+.voice-panel{position:fixed;top:80px;right:20px;z-index:299;display:none;width:300px;background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.18);overflow:hidden;border:1px solid var(--border)}
 .voice-panel.open{display:block}
 .voice-header{background:var(--indigo);padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
 .voice-title{font-size:14px;font-weight:700;color:#fff}
@@ -451,6 +450,14 @@ footer{background:#060E08;padding:56px 6% 28px}
   .hero-actions{flex-direction:column}
   .btn-primary,.btn-wa-outline,.btn-outline{text-align:center;justify-content:center}
   .chat-panel{width:calc(100vw - 40px)}
+  /* Voice panel: bottom-sheet on mobile */
+  .ai-agent-panel{left:0;right:0;bottom:0;width:100%;border-radius:20px 20px 0 0;max-height:none}
+  .ai-agent-panel.fab-collapsed{left:auto;right:20px;bottom:24px;width:56px;max-height:56px;border-radius:50%}
+  /* Stack all three buttons vertically and centered */
+  .ai-agents-row{grid-template-columns:1fr;max-width:320px;margin:0 auto}
+  .agent-card{text-align:center}
+  .agent-voice-btn{max-width:280px;margin:0 auto}
+  .ai-text-chat-btn{max-width:320px;margin:0 auto 12px}
 }
 /* ── TASK-5 SECTION BACKGROUNDS ── */
 .sec-bg-light{background:var(--light)}
@@ -507,25 +514,6 @@ footer{background:#060E08;padding:56px 6% 28px}
       </a>
     </div>
   </div>
-  <!-- Floating KPI card -->
-  <div class="hero-stats-card fi">
-    <div class="stat-item">
-      <div class="stat-num" data-target="300">0<span>+ MW</span></div>
-      <div class="stat-label">Capacity commissioned</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-target="8">0<span>+ yrs</span></div>
-      <div class="stat-label">EPC expertise</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-target="25">0<span>+ projects</span></div>
-      <div class="stat-label">Pan-India</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num" data-target="97">0<span>%</span></div>
-      <div class="stat-label">Plant availability SLA</div>
-    </div>
-  </div>
 </section>
 
 <!-- TICKER -->
@@ -534,6 +522,26 @@ footer{background:#060E08;padding:56px 6% 28px}
     <span class="ticker-item">Wind Energy EPC</span><span class="ticker-item">Hybrid Solar + Wind</span><span class="ticker-item">O&amp;M Services</span><span class="ticker-item">MNRE Compliant</span><span class="ticker-item">Performance-Guaranteed</span><span class="ticker-item">Pan-India Operations</span><span class="ticker-item">Government &amp; PSU Projects</span><span class="ticker-item">Hospitals &amp; Institutions</span><span class="ticker-item">Real Estate Developers</span><span class="ticker-item">Wind Energy EPC</span><span class="ticker-item">Hybrid Solar + Wind</span><span class="ticker-item">O&amp;M Services</span><span class="ticker-item">MNRE Compliant</span><span class="ticker-item">Performance-Guaranteed</span><span class="ticker-item">Pan-India Operations</span><span class="ticker-item">Government &amp; PSU Projects</span><span class="ticker-item">Hospitals &amp; Institutions</span><span class="ticker-item">Real Estate Developers</span>
   </div>
 </div>
+
+<!-- KPI card
+<div class="hero-stats-card">
+  <div class="stat-item">
+    <div class="stat-num" data-target="300">0<span>+ MW</span></div>
+    <div class="stat-label">Capacity commissioned</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-target="8">0<span>+ yrs</span></div>
+    <div class="stat-label">EPC expertise</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-target="25">0<span>+ projects</span></div>
+    <div class="stat-label">Pan-India</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" data-target="97">0<span>%</span></div>
+    <div class="stat-label">Plant availability SLA</div>
+  </div>
+</div> -->
 
 <!-- PROCESS -->
 <section class="process hex-bg" id="process">
@@ -1022,7 +1030,6 @@ footer{background:#060E08;padding:56px 6% 28px}
   <a href="https://wa.me/918088744581?text=Hi%20SSV%20Infra%2C%20I%27d%20like%20to%20enquire." class="fab-wa" target="_blank" rel="noopener" aria-label="WhatsApp SSV Infra">
     <svg viewBox="0 0 360 362" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-rule="evenodd" d="M307.546 52.566C273.709 18.684 228.706.017 180.756 0 81.951 0 1.538 80.404 1.504 179.235c-.017 31.594 8.242 62.432 23.928 89.609L0 361.736l95.024-24.925c26.179 14.285 55.659 21.805 85.655 21.814h.077c98.788 0 179.21-80.413 179.244-179.244.017-47.898-18.608-92.926-52.454-126.807v-.008Zm-126.79 275.788h-.06c-26.73-.008-52.952-7.194-75.831-20.765l-5.44-3.231-56.391 14.791 15.05-54.981-3.542-5.638c-14.912-23.721-22.793-51.139-22.776-79.286.035-82.14 66.867-148.973 149.051-148.973 39.793.017 77.198 15.53 105.328 43.695 28.131 28.157 43.61 65.596 43.593 105.398-.035 82.149-66.867 148.982-148.982 148.982v.008Z" clip-rule="evenodd"/></svg>
   </a>
-  <button type="button" class="fab-ai" onclick="toggleAiPanel()" aria-label="Talk to AI">🎙️</button>
 </div>
 
 <script>
@@ -1166,12 +1173,12 @@ window.addEventListener('scroll', function() {
   } else {
     if (aiPanelEl.classList.contains('fab-collapsed')) {
       aiPanelEl.classList.remove('fab-collapsed');
-      if (!_panelClosedByUser) aiPanelEl.classList.add('open');
+      if (!_panelClosedByUser && window.innerWidth > 768) aiPanelEl.classList.add('open');
     }
   }
 }, { passive: true });
 /* Auto-open panel in hero on load (slight delay for smooth entrance) */
-setTimeout(function() { aiPanelEl.classList.add('open'); }, 800);
+setTimeout(function() { if (window.innerWidth > 768) aiPanelEl.classList.add('open'); }, 800);
 function sendChip(btn) {
   const text = btn.textContent;
   addChatMsg(text, 'user');

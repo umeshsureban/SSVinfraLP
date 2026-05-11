@@ -59,7 +59,7 @@ export default function V2Page() {
               <motion.p {...fadeUp(2)} className="text-slate-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-8">
                 300+ MW commissioned across India. Single-window EPC accountability with in-house O&M — from feasibility to 25-year plant life.
               </motion.p>
-              <motion.div {...fadeUp(3)} className="flex flex-wrap gap-3 justify-center">
+              <motion.div {...fadeUp(3)} className="flex flex-wrap gap-3 justify-center pb-16">
                 <a href="#contact" className="inline-flex items-center gap-2 text-white px-7 py-3.5 rounded-full text-[15px] font-bold no-underline bg-gradient-to-r from-teal-500/85 to-blue-600/85 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(20,184,166,0.25)] hover:opacity-90 transition-opacity">
                   Free Feasibility Report <ArrowRight size={16} />
                 </a>

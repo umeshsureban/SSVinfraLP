@@ -1,6 +1,6 @@
 # SSVInfra Landing Page
 
-A high-performance marketing landing page for **SSVInfra**, built with Next.js 15 and Tailwind CSS 4. Features a nature-inspired, editorial design with smooth scroll animations and an integrated WhatsApp / Voice AI contact flow.
+Marketing landing page for **SSVInfra** — India's Wind & Hybrid Solar EPC partner. Built as a self-contained static HTML page, bundled through Next.js static export and auto-deployed to Hostinger VPS via GitHub Actions.
 
 ---
 
@@ -8,35 +8,10 @@ A high-performance marketing landing page for **SSVInfra**, built with Next.js 1
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 15 (App Router, static export) |
 | Language | TypeScript 5 |
-| Styling | Tailwind CSS 4 |
-| Animations | Motion (Framer Motion v11) |
-| Icons | Lucide React |
-| UI Primitives | shadcn/ui (via `components.json`) |
-
----
-
-## Getting Started
-
-```bash
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the page.
-
-### Available Scripts
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Run production build |
-| `npm run lint` | Run ESLint |
+| Page Content | `ssvinfra.html` (self-contained HTML/CSS/JS) |
+| Deployment | GitHub Actions → rsync → Hostinger VPS |
 
 ---
 
@@ -45,36 +20,47 @@ Open [http://localhost:3000](http://localhost:3000) to view the page.
 ```
 SSVinfraLP/
 ├── app/
-│   ├── globals.css       # Global styles & Tailwind directives
 │   ├── layout.tsx        # Root layout with metadata
-│   └── route.ts          # API route (if any)
-├── components/
-│   ├── blocks/           # Page-level section components
-│   └── ui/               # Reusable UI primitives
-├── lib/
-│   └── utils.ts          # cn() utility (clsx + tailwind-merge)
-├── public/
-│   └── ssvinfra.html     # Static HTML reference / prototype
-├── ssvinfra.html         # Design reference (self-contained)
-├── components.json       # shadcn/ui configuration
-├── next.config.ts        # Next.js configuration
-└── tsconfig.json         # TypeScript configuration
+│   └── page.tsx          # Minimal page (build placeholder)
+├── public/               # Static assets
+├── ssvinfra.html         # Main landing page (deployed as index.html)
+├── .github/
+│   └── workflows/
+│       └── deploy.yml    # CI/CD pipeline
+├── next.config.ts        # output: "export" (static site)
+└── tsconfig.json
 ```
 
 ---
 
-## Design System
+## Local Development
 
-| Token | Color | Usage |
-|---|---|---|
-| `--dark` | `#0B1609` | Nav, hero overlay |
-| `--forest` | `#2E510F` | Primary CTA buttons |
-| `--mid` | `#698B57` | Accents, card borders |
-| `--sage` | `#526B58` | Body text |
-| `--wa` | `#25D366` | WhatsApp FAB |
-| `--indigo` | `#4F46E5` | Voice AI panel |
+```bash
+npm install
+npm run dev
+```
 
-**Font:** Inter (Google Fonts) — weights 300–900
+Open [http://localhost:3000](http://localhost:3000).
+
+> Note: The dev server serves a blank page. Open [http://localhost:3000/ssvinfra.html](http://localhost:3000/ssvinfra.html) or open `ssvinfra.html` directly in a browser to preview the landing page.
+
+---
+
+## Deployment
+
+Push to `master` — GitHub Actions handles everything automatically:
+
+1. Builds Next.js static export → `out/`
+2. Copies `ssvinfra.html` → `out/index.html`
+3. rsyncs `out/` to VPS at `/var/www/ssvinfra.aitomate.cloud`
+
+See [DEPLOYMENT_SETUP.md](DEPLOYMENT_SETUP.md) for full infrastructure details.
+
+---
+
+## Live URL
+
+[https://ssvinfra.aitomate.cloud](https://ssvinfra.aitomate.cloud)
 
 ---
 

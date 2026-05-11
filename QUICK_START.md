@@ -1,10 +1,4 @@
-# Quick Start — Deploying ssvinfra.aitomate.cloud
-
-## Requirements (one-time)
-- [ ] SSH key pair generated and public key added to VPS (`72.60.103.200`)
-- [ ] 4 GitHub Secrets set: `SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USERNAME`, `SSH_TARGET_DIR`
-- [ ] Target directory exists on VPS: `/var/www/ssvinfra.aitomate.cloud`
-- [ ] Nginx configured to serve from `/var/www/ssvinfra.aitomate.cloud`
+# Quick Start — ssvinfra.aitomate.cloud
 
 ## Deploy
 ```bash
@@ -12,9 +6,30 @@ git add .
 git commit -m "your message"
 git push origin master
 ```
-GitHub Actions builds Next.js → static `out/` → rsyncs to VPS automatically.
+GitHub Actions builds → copies `ssvinfra.html` as `index.html` → rsyncs to VPS.
 
 Monitor at: **GitHub repo → Actions tab**
 
-## Docs
-See [DEPLOYMENT_SETUP.md](DEPLOYMENT_SETUP.md) for full setup instructions.
+---
+
+## Infrastructure (already configured)
+
+| Item | Value |
+|---|---|
+| VPS IP | `72.60.103.200` |
+| Deploy user | `root` |
+| Web root | `/var/www/ssvinfra.aitomate.cloud` |
+| SSH key | `~/.ssh/ssvinfra_deploy` (local) |
+| GitHub Secrets | `SSH_PRIVATE_KEY`, `SSH_HOST`, `SSH_USERNAME`, `SSH_TARGET_DIR` |
+
+---
+
+## Edit the landing page
+
+All content is in `ssvinfra.html` at the project root. Edit it and push to deploy.
+
+---
+
+## Troubleshooting
+
+See [DEPLOYMENT_SETUP.md](DEPLOYMENT_SETUP.md) for detailed troubleshooting steps.

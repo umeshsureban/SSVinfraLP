@@ -58,7 +58,7 @@ export default function V1Page() {
               <motion.p {...fadeUp(2)} className="text-white/60 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-8">
                 <strong className="text-white/80">Tired of EPC firms that disappear after commissioning?</strong> SSV Infra owns the full lifecycle — from site feasibility to 25-year O&M.
               </motion.p>
-              <motion.div {...fadeUp(3)} className="flex flex-wrap gap-3 justify-center">
+              <motion.div {...fadeUp(3)} className="flex flex-wrap gap-3 justify-center pb-16">
                 <a href="#contact" className="inline-flex items-center gap-2 text-white px-7 py-3.5 rounded-full text-[15px] font-bold no-underline bg-[rgba(46,81,15,0.75)] backdrop-blur-md border border-[#698B57]/50 shadow-[0_8px_32px_rgba(46,81,15,0.3)] hover:bg-[rgba(46,81,15,0.92)] transition-all">
                   Get Free Feasibility Report <ArrowUpRight size={16} />
                 </a>

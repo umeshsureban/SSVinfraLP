@@ -1,98 +1,94 @@
 # Deployment Setup — ssvinfra.aitomate.cloud
 
 ## Overview
-This project auto-deploys to `ssvinfra.aitomate.cloud` (Hostinger VPS at `72.60.103.200`) via GitHub Actions on every push to `master`. Next.js is built to a static `out/` folder and rsynced to the VPS — no Node.js server required.
+
+Auto-deploys to `ssvinfra.aitomate.cloud` (Hostinger VPS at `72.60.103.200`) on every push to `master`. Next.js builds a static `out/` folder, `ssvinfra.html` is copied over as `index.html`, and the whole thing is rsynced to the VPS — no Node.js server required.
 
 ---
 
-## One-Time Setup
+## Current Status
 
-### 1. Generate SSH Key Pair (on your local machine)
-```bash
-ssh-keygen -t ed25519 -C "github-deploy-ssvinfra" -f ~/.ssh/ssvinfra_deploy
-```
-This creates:
-- `~/.ssh/ssvinfra_deploy` — **private key** (goes into GitHub Secrets)
-- `~/.ssh/ssvinfra_deploy.pub` — **public key** (goes on the VPS)
+| Item | Status | Value |
+|---|---|---|
+| VPS | Running | `72.60.103.200` (Ubuntu 24.04) |
+| SSH key | Configured | `~/.ssh/ssvinfra_deploy` |
+| GitHub Secrets | Set | See below |
+| Web root | Exists | `/var/www/ssvinfra.aitomate.cloud` |
+| Nginx | Configured | Serves from web root |
 
-### 2. Add Public Key to VPS
-SSH into the VPS and append the public key:
-```bash
-ssh root@72.60.103.200
-mkdir -p ~/.ssh
-echo "PASTE_PUBLIC_KEY_CONTENTS_HERE" >> ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-```
-Or use **Hostinger hPanel → VPS → SSH Keys** to add it via the UI.
+### GitHub Secrets
 
-### 3. Create Target Directory on VPS
-```bash
-ssh root@72.60.103.200
-mkdir -p /var/www/ssvinfra.aitomate.cloud
-```
-
-### 4. Configure Nginx on VPS
-Create a site config pointing to the target directory:
-```nginx
-server {
-    listen 80;
-    server_name ssvinfra.aitomate.cloud;
-    root /var/www/ssvinfra.aitomate.cloud;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-```
-Enable and reload:
-```bash
-ln -s /etc/nginx/sites-available/ssvinfra.aitomate.cloud /etc/nginx/sites-enabled/
-nginx -t && systemctl reload nginx
-```
-
-### 5. Add GitHub Secrets
-Go to: **GitHub repo → Settings → Secrets and variables → Actions → New repository secret**
-
-Add all four secrets:
-
-| Secret Name | Value |
+| Secret | Value |
 |---|---|
-| `SSH_PRIVATE_KEY` | Contents of `~/.ssh/ssvinfra_deploy` (entire private key file) |
+| `SSH_PRIVATE_KEY` | Contents of `~/.ssh/ssvinfra_deploy` |
 | `SSH_HOST` | `72.60.103.200` |
-| `SSH_USERNAME` | Your VPS SSH username (e.g. `root` or `ubuntu`) |
+| `SSH_USERNAME` | `root` |
 | `SSH_TARGET_DIR` | `/var/www/ssvinfra.aitomate.cloud` |
 
-### 6. Trigger First Deployment
-Push any commit to `master`. Watch it run under **GitHub repo → Actions**.
+---
+
+## How the Pipeline Works
+
+```
+git push master
+      ↓
+GitHub Actions (.github/workflows/deploy.yml)
+      ↓
+npm ci → npm run build          # Next.js static export → out/
+      ↓
+cp ssvinfra.html out/index.html # Landing page becomes the root
+      ↓
+rsync out/ → root@72.60.103.200:/var/www/ssvinfra.aitomate.cloud/
+```
 
 ---
 
-## Updating the Website
-Just push to `master`. GitHub Actions handles everything automatically.
+## Re-setup from Scratch (if needed)
+
+### 1. Generate SSH Key Pair
+```bash
+ssh-keygen -t ed25519 -C "github-deploy" -f ~/.ssh/ssvinfra_deploy
+```
+
+### 2. Add Public Key to VPS
+Via Hostinger hPanel browser terminal:
+```bash
+echo "PASTE_PUBLIC_KEY_HERE" >> /root/.ssh/authorized_keys
+chmod 600 /root/.ssh/authorized_keys
+```
+
+### 3. Create Web Root on VPS
+```bash
+mkdir -p /var/www/ssvinfra.aitomate.cloud
+chown -R root:root /var/www/ssvinfra.aitomate.cloud
+```
+
+### 4. Add GitHub Secrets
+Go to: **GitHub repo → Settings → Secrets and variables → Actions**
+
+Add the 4 secrets listed in the table above.
 
 ---
 
 ## Troubleshooting
 
 **Permission denied (publickey)**
-- Verify the public key is in `~/.ssh/authorized_keys` on the VPS
-- Verify `SSH_PRIVATE_KEY` secret contains the full private key (including `-----BEGIN` and `-----END` lines)
-
-**rsync: failed to set permissions**
-- The SSH user may not own the target directory. Run:
-  ```bash
-  chown -R root: /var/www/ssvinfra.aitomate.cloud
-  ```
-
-**No such file or directory**
-- The target directory doesn't exist on the VPS. Create it:
-  ```bash
-  mkdir -p /var/www/ssvinfra.aitomate.cloud
-  ```
+- Verify the public key is in `/root/.ssh/authorized_keys` on the VPS
+- Verify `SSH_PRIVATE_KEY` secret contains the full private key including `-----BEGIN` and `-----END` lines
+- Use `printf '%s\n'` not `echo` when writing the key in the workflow (already fixed)
 
 **Build fails: `output: export` error**
-- Ensure no API routes or server-only features are used (they're incompatible with static export)
+- Do not add API routes (`app/route.ts`) or any server-only Next.js features — they are incompatible with static export
+
+**rsync: permission denied on target**
+```bash
+chown -R root: /var/www/ssvinfra.aitomate.cloud
+```
+
+**No such file or directory**
+```bash
+mkdir -p /var/www/ssvinfra.aitomate.cloud
+```
 
 **Workflow not triggering**
-- Confirm the push is to `master` and the workflow file is committed to that branch
+- Confirm the push is to `master` and `deploy.yml` is committed to that branch
