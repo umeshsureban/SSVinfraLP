@@ -161,16 +161,27 @@ export default function V1Page() {
             { dot: "bg-[#F9A825]", iconColor: "text-[#F9A825]", Icon: Sun, name: "Hybrid Solar + Wind", desc: "Co-located solar PV and wind turbine plants sharing civil infrastructure — maximise PLF, reduce per-unit cost, smooth generation variability.", specs: ["Optimised PLF","BESS ready","Shared infra savings"] },
             { dot: "bg-[#1E88E5]", iconColor: "text-[#1E88E5]", Icon: Wrench, name: "O&M Services", desc: "Preventive & corrective maintenance, 24×7 remote SCADA, spare parts management, and SLA-backed 97% plant availability guarantee.", specs: ["97% availability SLA","24×7 SCADA","AMC contracts"] },
           ].map((svc, i) => (
-            <motion.div key={svc.name} {...fadeUp(i)} whileHover={{ y: -6, scale: 1.02 }} className="rounded-2xl p-8 bg-white/70 backdrop-blur-xl border border-[#E8EDE3]/80 shadow-sm cursor-default hover:shadow-lg transition-shadow">
-              <div className={`w-3 h-3 rounded-full mb-5 ${svc.dot}`} />
-              <svc.Icon size={28} className={`mb-3 ${svc.iconColor}`} />
-              <h3 className="text-xl font-bold text-[#0B1609] mb-2">{svc.name}</h3>
-              <p className="text-[14px] text-[#698B57] leading-relaxed mb-4">{svc.desc}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {svc.specs.map(s => (
-                  <span key={s} className="text-[11px] px-3 py-1 rounded-full font-semibold bg-[#F2F5EE]/90 border border-[#B4BCA0]/25 text-[#698B57]">{s}</span>
-                ))}
-              </div>
+            <motion.div key={svc.name} {...fadeUp(i)}>
+              <FlipCard
+                front={
+                  <div className="rounded-2xl p-8 bg-white/70 backdrop-blur-xl border border-[#E8EDE3]/80 shadow-sm cursor-default">
+                    <div className={`w-3 h-3 rounded-full mb-5 ${svc.dot}`} />
+                    <svc.Icon size={28} className={`mb-3 ${svc.iconColor}`} />
+                    <h3 className="text-xl font-bold text-[#0B1609] mb-3">{svc.name}</h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {svc.specs.map(s => (
+                        <span key={s} className="text-[11px] px-3 py-1 rounded-full font-semibold bg-[#F2F5EE]/90 border border-[#B4BCA0]/25 text-[#698B57]">{s}</span>
+                      ))}
+                    </div>
+                  </div>
+                }
+                back={
+                  <div className="rounded-2xl p-8 bg-gradient-to-br from-[#0b1609] to-[#1a2e16] flex flex-col justify-center gap-3 cursor-default">
+                    <span className="text-[10px] font-bold tracking-[2px] uppercase text-[#698b57]">{svc.name}</span>
+                    <p className="text-[14px] text-white/80 leading-relaxed">{svc.desc}</p>
+                  </div>
+                }
+              />
             </motion.div>
           ))}
         </div>
