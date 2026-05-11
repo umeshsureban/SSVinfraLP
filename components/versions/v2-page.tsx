@@ -192,10 +192,20 @@ export default function V2Page() {
             { icon: "🌏", title: "Pan-India operations",       desc: "Active in Rajasthan, Gujarat, Karnataka, TN, AP, Maharashtra, MP." },
             { icon: "💼", title: "CAPEX / RESCO advisory",     desc: "Independent financing model advisory — we recommend what's best for your ROI." },
           ].map((item, i) => (
-            <motion.div key={item.title} {...fadeIn(i)} whileHover={{ y: -4, scale: 1.02 }} className="rounded-2xl p-6 bg-white/[0.05] backdrop-blur-xl border border-white/10 hover:bg-white/[0.1] transition-all cursor-default">
-              <div className="text-3xl mb-3">{item.icon}</div>
-              <h3 className="text-base font-bold text-white mb-1">{item.title}</h3>
-              <p className="text-[13px] text-slate-400 leading-relaxed">{item.desc}</p>
+            <motion.div key={item.title} {...fadeIn(i)}>
+              <FlipCard
+                front={
+                  <div className="rounded-2xl p-6 bg-white/[0.05] backdrop-blur-xl border border-white/10 cursor-default">
+                    <div className="text-3xl mb-3">{item.icon}</div>
+                    <h3 className="text-base font-bold text-white">{item.title}</h3>
+                  </div>
+                }
+                back={
+                  <div className="rounded-2xl p-6 bg-teal-500/[0.15] backdrop-blur-xl border border-teal-500/30 flex items-center cursor-default">
+                    <p className="text-[13px] text-slate-300 leading-relaxed">{item.desc}</p>
+                  </div>
+                }
+              />
             </motion.div>
           ))}
         </div>
