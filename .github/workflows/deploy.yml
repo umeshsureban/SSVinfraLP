@@ -37,25 +37,37 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
           chmod 644 ~/.ssh/known_hosts
 
+      - name: Diagnose port connectivity
+        run: |
+          echo "=== Checking which SSH port is reachable ==="
+          for port in 22 2222 22222 65002; do
+            result=$(nc -zv -w 8 ${{ secrets.SSH_HOST }} $port 2>&1 || true)
+            echo "Port $port: $result"
+          done
+
       - name: Test SSH Connection
         run: |
-          for i in 1 2 3; do
-            echo "SSH attempt $i..."
-            ssh -i ~/.ssh/deploy_key \
-              -o StrictHostKeyChecking=no \
-              -o ConnectTimeout=30 \
-              -o ServerAliveInterval=15 \
-              -p 22 \
-              ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "echo SSH OK" && exit 0
-            sleep 10
+          SSH_PORT=22
+          # detect open port from nc scan
+          for port in 22 2222 22222 65002; do
+            nc -zv -w 8 ${{ secrets.SSH_HOST }} $port 2>/dev/null && SSH_PORT=$port && break || true
           done
-          echo "ERROR: Could not connect after 3 attempts. Check VPS firewall — port 22 must allow 0.0.0.0/0."
-          exit 1
+          echo "Using SSH port: $SSH_PORT"
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            -o ConnectTimeout=30 \
+            -o ServerAliveInterval=15 \
+            -p $SSH_PORT \
+            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "echo SSH OK"
 
       - name: Deploy using rsync
         run: |
-          echo "Deploying to ssvinfra.aitomate.cloud..."
+          SSH_PORT=22
+          for port in 22 2222 22222 65002; do
+            nc -zv -w 8 ${{ secrets.SSH_HOST }} $port 2>/dev/null && SSH_PORT=$port && break || true
+          done
+          echo "Deploying to ssvinfra.aitomate.cloud on port $SSH_PORT..."
           rsync -avz --delete \
-            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p 22" \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p $SSH_PORT" \
             ./out/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_TARGET_DIR }}/
           echo "Deployment complete."
