@@ -27,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: Set landing page as index
-        run: cp ssvinfra.html out/index.html
+        run: cp public/ssvinfra.html out/index.html
 
       - name: Setup SSH Key
         run: |
