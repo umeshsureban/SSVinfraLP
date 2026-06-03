@@ -39,15 +39,23 @@ jobs:
 
       - name: Test SSH Connection
         run: |
-          ssh -i ~/.ssh/deploy_key \
-            -o StrictHostKeyChecking=no \
-            -o ConnectTimeout=10 \
-            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "echo SSH OK"
+          for i in 1 2 3; do
+            echo "SSH attempt $i..."
+            ssh -i ~/.ssh/deploy_key \
+              -o StrictHostKeyChecking=no \
+              -o ConnectTimeout=30 \
+              -o ServerAliveInterval=15 \
+              -p 22 \
+              ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "echo SSH OK" && exit 0
+            sleep 10
+          done
+          echo "ERROR: Could not connect after 3 attempts. Check VPS firewall — port 22 must allow 0.0.0.0/0."
+          exit 1
 
       - name: Deploy using rsync
         run: |
           echo "Deploying to ssvinfra.aitomate.cloud..."
           rsync -avz --delete \
-            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p 22" \
             ./out/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_TARGET_DIR }}/
           echo "Deployment complete."
