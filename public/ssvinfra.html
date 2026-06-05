@@ -95,14 +95,14 @@ section{padding:100px 6%}
 .btn-wa-outline:hover{background:var(--wa);color:#fff}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;transition:all .35s}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;transition:all .35s;background:linear-gradient(to bottom,rgba(5,20,10,.72) 0%,rgba(5,20,10,.0) 100%);}
 nav.scrolled{height:56px;background:rgba(11,26,9,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(104,139,87,.15)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-mark{width:42px;height:42px;flex-shrink:0;display:block}
-.logo-text{font-size:18px;font-weight:700;color:#fff;letter-spacing:.3px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-.logo-text span{color:var(--pale)}
+.logo-text{font-size:18px;font-weight:800;color:#fff;letter-spacing:.3px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-shadow:0 1px 6px rgba(0,0,0,.65),0 2px 12px rgba(0,0,0,.4)}
+.logo-text span{color:#4cdd78;text-shadow:0 1px 6px rgba(0,0,0,.55)}
 .nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.95);text-decoration:none;font-weight:600;transition:color .2s;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .nav-links a:hover{color:#fff}
 .nav-right{display:flex;align-items:center;gap:16px}
 .nav-phone{font-size:13px;font-weight:600;color:var(--pale);text-decoration:none;white-space:nowrap;transition:color .2s}
@@ -148,6 +148,14 @@ nav.scrolled{height:56px;background:rgba(11,26,9,.94);-webkit-backdrop-filter:bl
   position:relative;z-index:1;max-width:580px;
   padding:40px 48px;
 }
+/* ── HERO CARD: transparent, no background ── */
+.hero-inner.liquid-glass{
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border:none;
+  box-shadow:none;
+}
 .hero-powering{font-size:13px;font-weight:700;color:#0D2B5E;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px}
 .hero h1{font-size:clamp(38px,5.5vw,72px);font-weight:900;color:#0D2B5E;line-height:1.05;letter-spacing:-1px;margin-bottom:14px}
 .hero h1 .hl{color:#1B7A34;display:block}
@@ -155,11 +163,11 @@ nav.scrolled{height:56px;background:rgba(11,26,9,.94);-webkit-backdrop-filter:bl
 .hero-tagline .hl2{color:#1B7A34}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:0}
 /* ── HERO ICONS STRIP ── */
-.hero-icons-strip{position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:center;padding:16px 6%;z-index:2;border-top:1px solid rgba(27,122,52,.15)}
+.hero-icons-strip{position:absolute;bottom:0;left:0;right:0;background:transparent;display:flex;justify-content:center;align-items:center;padding:16px 6%;z-index:2;border-top:none}
 .hero-icon-item{display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;max-width:180px;padding:4px 16px}
 .hero-icon-item+.hero-icon-item{border-left:1px solid rgba(27,122,52,.2)}
 .hero-icon-circle{width:64px;height:64px;border-radius:50%;border:2px solid #1B7A34;display:flex;align-items:center;justify-content:center;background:#fff;flex-shrink:0}
-.hero-icon-label{font-size:11px;font-weight:800;color:#0D2B5E;text-align:center;letter-spacing:1.5px;text-transform:uppercase;line-height:1.4}
+.hero-icon-label{font-size:11px;font-weight:800;color:#0D2B5E;text-align:center;letter-spacing:1.5px;text-transform:uppercase;line-height:1.4;background:rgba(255,255,255,0.85);padding:3px 8px;border-radius:4px}
 @media(max-width:768px){
   .hero-icons-strip{padding:12px 4%;gap:0;flex-wrap:nowrap}
   .hero-icon-circle{width:46px;height:46px}
@@ -559,8 +567,8 @@ footer{background:#060E08;padding:56px 6% 28px}
 /* ── KEYFRAMES ── */
 @keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(-22px) scale(1.06)}70%{transform:translateY(10px) scale(.96)}}
 @keyframes heroGlow{
-  0%,100%{box-shadow:0 2px 4px rgba(0,0,0,.04),0 12px 40px rgba(0,0,0,.14),0 32px 64px rgba(0,0,0,.10),inset 0 1.5px 0 rgba(255,255,255,.90),inset 0 -1px 0 rgba(255,255,255,.12),inset 1px 0 0 rgba(255,255,255,.35),inset -1px 0 0 rgba(255,255,255,.10)}
-  50%{box-shadow:0 4px 8px rgba(0,0,0,.06),0 20px 60px rgba(27,122,52,.22),0 40px 80px rgba(27,122,52,.10),inset 0 1.5px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(255,255,255,.20),inset 1px 0 0 rgba(255,255,255,.50),inset -1px 0 0 rgba(255,255,255,.18)}
+  0%,100%{box-shadow:0 4px 8px rgba(0,0,0,.07),0 16px 48px rgba(0,0,0,.18),0 40px 80px rgba(0,0,0,.12),inset 0 2px 0 rgba(255,255,255,1),inset 0 -1px 0 rgba(255,255,255,.30),inset 1px 0 0 rgba(255,255,255,.70),inset -1px 0 0 rgba(255,255,255,.22)}
+  50%{box-shadow:0 6px 14px rgba(0,0,0,.09),0 24px 64px rgba(27,122,52,.18),0 50px 100px rgba(27,122,52,.10),inset 0 2px 0 rgba(255,255,255,1),inset 0 -1px 0 rgba(255,255,255,.42),inset 1px 0 0 rgba(255,255,255,.88),inset -1px 0 0 rgba(255,255,255,.32)}
 }
 @keyframes iconRing{0%,100%{box-shadow:0 0 0 0 rgba(27,122,52,0)}60%{box-shadow:0 0 0 8px rgba(27,122,52,.10)}}
 @keyframes floatUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -570,6 +578,8 @@ footer{background:#060E08;padding:56px 6% 28px}
 
 /* ── RAIN CANVAS ── */
 #hero-rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+/* ── CARD RAIN CANVAS ── */
+#card-rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;border-radius:inherit}
 
 /* ── WATER DROPLETS ON GLASS CARD ── */
 @keyframes dropSlide{0%{transform:translateY(0);opacity:.8}80%{opacity:.5}100%{transform:translateY(120px);opacity:0}}
@@ -736,11 +746,11 @@ footer{background:#060E08;padding:56px 6% 28px}
 
 /* ── HERO ICONS STRIP ── */
 .hero-icons-strip{
-  background:rgba(255,255,255,.10);
-  backdrop-filter:blur(28px) saturate(200%) brightness(1.12);
-  -webkit-backdrop-filter:blur(28px) saturate(200%) brightness(1.12);
-  border-top:1px solid rgba(255,255,255,.35);
-  box-shadow:0 -4px 24px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.70)
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-top:none;
+  box-shadow:none
 }
 </style>
 </head>
@@ -787,6 +797,7 @@ footer{background:#060E08;padding:56px 6% 28px}
   <div class="hero-orb hero-orb-2"></div>
   <div class="hero-orb hero-orb-3"></div>
   <div class="hero-inner liquid-glass">
+    <canvas id="card-rain" aria-hidden="true"></canvas>
     <div class="glass-drop gd-1"></div>
     <div class="glass-drop gd-2"></div>
     <div class="glass-drop gd-3"></div>
@@ -1752,6 +1763,157 @@ function handleVoiceText() {
       if(rp.life <= 0) ripples.splice(j,1);
     }
 
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<script>
+/* ── CARD RAINDROP-ON-GLASS ANIMATION ── */
+(function(){
+  var canvas = document.getElementById('card-rain');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, drops = [], spawnTick = 0;
+  var RADIUS = 24; /* card border-radius */
+
+  function resize(){
+    W = canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+    H = canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function mkDrop(startY){
+    var r = Math.random() * 14 + 3;
+    return {
+      x:       Math.random() * (W - r*2) + r,
+      y:       startY !== undefined ? startY : Math.random() * H,
+      r:       r,
+      rx:      r * (0.80 + Math.random() * 0.16),
+      sliding: startY !== undefined,
+      vy:      startY !== undefined ? (Math.random() * 0.6 + 0.2) : 0,
+      age:     0,
+      maxAge:  350 + Math.random() * 400,
+      op:      0.48 + Math.random() * 0.32
+    };
+  }
+
+  /* seed card with pre-aged drops */
+  for(var i = 0; i < 32; i++){
+    var d = mkDrop();
+    d.age = Math.random() * d.maxAge * 0.65;
+    drops.push(d);
+  }
+
+  /* rounded-rect clip so drops stay inside card corners */
+  function clipCard(){
+    ctx.beginPath();
+    ctx.moveTo(RADIUS, 0);
+    ctx.lineTo(W - RADIUS, 0);
+    ctx.arcTo(W, 0, W, RADIUS, RADIUS);
+    ctx.lineTo(W, H - RADIUS);
+    ctx.arcTo(W, H, W - RADIUS, H, RADIUS);
+    ctx.lineTo(RADIUS, H);
+    ctx.arcTo(0, H, 0, H - RADIUS, RADIUS);
+    ctx.lineTo(0, RADIUS);
+    ctx.arcTo(0, 0, RADIUS, 0, RADIUS);
+    ctx.closePath();
+    ctx.clip();
+  }
+
+  function drawDrop(d){
+    var rx = d.rx, ry = d.r;
+    var prog = d.age / d.maxAge;
+    var fade;
+    if(prog < 0.09)      fade = prog / 0.09;
+    else if(prog > 0.80) fade = (1 - prog) / 0.20;
+    else                 fade = 1;
+    var op = Math.max(0, Math.min(1, fade)) * d.op;
+
+    ctx.save();
+    ctx.translate(d.x, d.y);
+
+    /* outer shadow */
+    ctx.beginPath();
+    ctx.ellipse(rx*0.05, ry*0.08, rx*0.94, ry*0.90, 0, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(5,15,30,' + (op * 0.20) + ')';
+    ctx.fill();
+
+    /* dark rim */
+    ctx.beginPath();
+    ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI*2);
+    ctx.strokeStyle = 'rgba(10,25,50,' + (op * 0.78) + ')';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    /* water body */
+    var g = ctx.createRadialGradient(-rx*0.12,-ry*0.18,rx*0.04, rx*0.08,ry*0.08,rx*1.2);
+    g.addColorStop(0,    'rgba(220,240,255,' + (op * 0.80) + ')');
+    g.addColorStop(0.30, 'rgba(165,210,245,' + (op * 0.56) + ')');
+    g.addColorStop(0.65, 'rgba(105,165,220,' + (op * 0.36) + ')');
+    g.addColorStop(1,    'rgba(55,110,170,'  + (op * 0.16) + ')');
+    ctx.fillStyle = g;
+    ctx.fill();
+
+    /* large diffuse highlight */
+    ctx.beginPath();
+    ctx.ellipse(-rx*0.24,-ry*0.30, rx*0.36,ry*0.22, -0.45, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,' + (op * 0.70) + ')';
+    ctx.fill();
+
+    /* sharp glint */
+    ctx.beginPath();
+    ctx.ellipse(-rx*0.09,-ry*0.53, rx*0.13,ry*0.09, -0.30, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,' + (op * 0.92) + ')';
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+
+    /* spawn a new falling drop every ~25 frames */
+    spawnTick++;
+    if(spawnTick >= 25 && drops.length < 55){
+      spawnTick = 0;
+      drops.push(mkDrop(-20));
+    }
+
+    ctx.save();
+    clipCard();
+
+    for(var i = drops.length - 1; i >= 0; i--){
+      var d = drops[i];
+      d.age++;
+
+      if(d.sliding){
+        d.y  += d.vy;
+        d.vy += 0.018;
+        /* settle when slow enough and inside card */
+        if(d.y > d.r * 2 && d.vy < 2.2 && Math.random() < 0.018){
+          d.sliding = false;
+          d.vy = 0;
+          d.age = 0;
+          d.maxAge = 300 + Math.random() * 450;
+        }
+        if(d.y > H + 30){ drops.splice(i, 1); continue; }
+      } else {
+        if(d.age >= d.maxAge){
+          if(d.r > 10 && Math.random() < 0.30){
+            d.sliding = true; d.vy = 0.22; d.age = 0; d.maxAge = 9999;
+          } else {
+            drops.splice(i, 1); continue;
+          }
+        }
+      }
+
+      drawDrop(d);
+    }
+
+    ctx.restore();
     requestAnimationFrame(draw);
   }
   draw();
